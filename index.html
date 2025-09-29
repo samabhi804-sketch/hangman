@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Hangman Game</h1>
+            <div class="difficulty-selector">
+                <h3>Select Difficulty:</h3>
+                <div class="difficulty-buttons">
+                    <button class="btn btn--primary difficulty-btn active" data-difficulty="easy">Easy</button>
+                    <button class="btn btn--secondary difficulty-btn" data-difficulty="medium">Medium</button>
+                    <button class="btn btn--outline difficulty-btn" data-difficulty="hard">Hard</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Game Area -->
+        <main class="game-container">
+            <div class="game-area">
+                <!-- Hangman Drawing -->
+                <div class="hangman-container">
+                    <svg width="200" height="250" class="hangman-svg">
+                        <!-- Gallows base -->
+                        <line x1="10" y1="230" x2="150" y2="230" stroke="var(--color-text)" stroke-width="4" class="hangman-part" id="gallows-base"/>
+                        <!-- Gallows pole -->
+                        <line x1="30" y1="230" x2="30" y2="20" stroke="var(--color-text)" stroke-width="4" class="hangman-part" id="gallows-pole"/>
+                        <!-- Gallows beam -->
+                        <line x1="30" y1="20" x2="120" y2="20" stroke="var(--color-text)" stroke-width="4" class="hangman-part" id="gallows-beam"/>
+                        <!-- Noose -->
+                        <line x1="120" y1="20" x2="120" y2="50" stroke="var(--color-text)" stroke-width="3" class="hangman-part" id="noose"/>
+                        <!-- Head -->
+                        <circle cx="120" cy="70" r="20" stroke="var(--color-text)" stroke-width="3" fill="none" class="hangman-part" id="head"/>
+                        <!-- Body -->
+                        <line x1="120" y1="90" x2="120" y2="170" stroke="var(--color-text)" stroke-width="3" class="hangman-part" id="body"/>
+                        <!-- Left arm -->
+                        <line x1="120" y1="120" x2="90" y2="140" stroke="var(--color-text)" stroke-width="3" class="hangman-part" id="left-arm"/>
+                        <!-- Right arm -->
+                        <line x1="120" y1="120" x2="150" y2="140" stroke="var(--color-text)" stroke-width="3" class="hangman-part" id="right-arm"/>
+                        <!-- Left leg -->
+                        <line x1="120" y1="170" x2="90" y2="200" stroke="var(--color-text)" stroke-width="3" class="hangman-part" id="left-leg"/>
+                        <!-- Right leg -->
+                        <line x1="120" y1="170" x2="150" y2="200" stroke="var(--color-text)" stroke-width="3" class="hangman-part" id="right-leg"/>
+                    </svg>
+                </div>
+
+                <!-- Word Display -->
+                <div class="word-container">
+                    <div class="word-display" id="word-display"></div>
+                    <div class="game-info">
+                        <div class="wrong-guesses">
+                            <span>Wrong guesses: <strong id="wrong-count">0</strong> / 6</span>
+                        </div>
+                        <div class="guessed-letters">
+                            <span>Wrong letters: <span id="wrong-letters"></span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alphabet Keyboard -->
+            <div class="keyboard" id="keyboard"></div>
+        </main>
+
+        <!-- Stats Panel -->
+        <div class="stats-panel">
+            <h3>Game Statistics</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-label">Wins:</span>
+                    <span class="stat-value" id="wins">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Losses:</span>
+                    <span class="stat-value" id="losses">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Current Streak:</span>
+                    <span class="stat-value" id="streak">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Difficulty:</span>
+                    <span class="stat-value" id="current-difficulty">Easy</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Modal -->
+        <div class="modal hidden" id="game-over-modal">
+            <div class="modal-content">
+                <h2 id="modal-title"></h2>
+                <p id="modal-message"></p>
+                <div class="modal-actions">
+                    <button class="btn btn--primary" id="play-again-btn">Play Again</button>
+                    <button class="btn btn--secondary" id="change-difficulty-btn">Change Difficulty</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
